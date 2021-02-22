@@ -20,6 +20,9 @@ Lazy Evaluation lets the user do things that otherwise would be basically imposs
 ```
 Creates a list of all Fibonacci numbers. 
 
+
+In order to be efficient, implementations of Lazy Evaluation take advantage of memoization (this isn't a typo, the 'R' really is missing!), where the result of values are stored in O(1) lookup tables as they are computed. Thus, whenever the program needs to access a variable, it first looks up if it has previously calculated the variable's value. If so, it will return that pre-calculated value. Otherwise, it will calculate it, store the result in the memoization table, and then return it. 
+
 ### Pros and Cons
 #### Pros
 1. Loading large and infrequently accessed data is much faster
@@ -65,6 +68,10 @@ Try this code on your own, and see if it operates how you'd expect it to.
 (format "Once a value is computed, it will stay that value until reassigned. Thus this value should still be 0: ~a"  (- (force x) (force comparison)))
 ```
 See [The Official Docs](https://docs.racket-lang.org/lazy/index.html) for more information
+
+### TL;DR
+
+Lazy Evaluation allows the program to wait until a variable's value is needed before computing it. This matters if you're using a language that has lazy evaluation, as it allows for efficient loading of chunks of large data, infinite lists, and can mean that the order of when a variable is first accessed can have an effect on its result. 
 
 ### Footnotes
 
